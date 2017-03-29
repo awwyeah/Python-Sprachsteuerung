@@ -2,40 +2,40 @@ import pocketsphinx as ps
 #import sphinxbase
 import pyaudio
 
-# Decoding-Objekt erstellen
+# creating decoding object
 hmmd = '/usr/share/pocketsphinx/model/hmm/wsj1'
 lmd = '/usr/share/pocketsphinx/lm/wsj/wlist5o.3e-7.vp.tg.lm.DMP'
 dictd = '/usr/share/pocketsphinx/lm/wsj/wlist5o.dic'
 d = ps.Decoder(hmm=hmmd, lm=lmd, dict=dictd)
 
 
-# Audiodatei dekodieren
+# decoding audio file
 def decoding(filename):
 
-    # Header der WAV-Datei ueberspringen
+    # skip header of WAV-file
     wavFile = file(filename + '.wav', 'rb')
     wavFile.seek(44)
 
-    # Audio Datei dekodieren
+    # decoding audio file
     d.decode_raw(wavFile)
     results = d.get_hyp()
 
-    #
+    # takes first match
     decode_speech = results[0]
     print "I said ", decode_speech[0], " with a confidence of ", decode_speech[1]
 
 
-# Live-Dekodierung
+# live decoding
 def live_decoding():
 
-    # PyAudio-Objekt erzeugen
+    # creating pyaudio object
     p = pyaudio.PyAudio()
 
     # input Stream
     in_stream = p.open(format=pyaudio.paInt16, channels=1, rate=16000, input=True, frames_per_buffer=1024)
     in_stream.start_stream()
 
-    # Dekodierung starten
+    # start live decoding
     d.start_utt()
     while True:
         buf = in_stream.read(1024)

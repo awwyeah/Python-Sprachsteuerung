@@ -23,7 +23,7 @@ def record(filename):
     # filename
     WAVE_OUTPUT_FILENAME = filename + ".wav"
 
-    # initializing pyaudio object
+    # creating pyaudio object
     p = pyaudio.PyAudio()
 
     # input stream
@@ -57,7 +57,7 @@ def audio_output(filename):
     # open file
     wf = wave.open((filename + ".wav"), "rb")
 
-    # initializing pyaudio object
+    # creating pyaudio object
     p = pyaudio.PyAudio()
 
     # output stream
