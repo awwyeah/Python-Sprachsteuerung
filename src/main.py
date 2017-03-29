@@ -2,7 +2,7 @@ import audiostream
 import decoding_audio
 import sys
 
-# command line arguments 
+# command line arguments
 if sys.argv[1] == "record":
     audiostream.record(sys.argv[2])
 elif sys.argv[1] == "output":
