@@ -2,10 +2,12 @@ import pocketsphinx as ps
 #import sphinxbase
 import pyaudio
 
+# pocketsphinx input parameter, you have to put you're own path
+hmmd = '/usr/share/pocketsphinx/model/hmm/en_US/hub4wsj_sc_8k'
+lmd = '/home/leon/Dokumente/Projekt/pocketsphinx/en-us.lm.dmp'
+dictd = '/usr/share/pocketsphinx/model/lm/en_US/cmu07a.dic'
+
 # creating decoding object
-hmmd = '/usr/share/pocketsphinx/model/hmm/wsj1'
-lmd = '/usr/share/pocketsphinx/lm/wsj/wlist5o.3e-7.vp.tg.lm.DMP'
-dictd = '/usr/share/pocketsphinx/lm/wsj/wlist5o.dic'
 d = ps.Decoder(hmm=hmmd, lm=lmd, dict=dictd)
 
 
