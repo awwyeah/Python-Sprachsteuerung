@@ -3,7 +3,7 @@ import pocketsphinx as ps
 import pyaudio
 
 # pocketsphinx input parameter, you have to put you're own path
-hmmd = '/usr/share/pocketsphinx/model/hmm/en_US/hub4wsj_sc_8k'
+hmmd = '/home/leon/Dokumente/Projekt/pocketsphinx/cmusphinx-en-us-8khz-5.2'
 lmd = '/home/leon/Dokumente/Projekt/pocketsphinx/en-us.lm.dmp'
 dictd = '/usr/share/pocketsphinx/model/lm/en_US/cmu07a.dic'
 
@@ -22,9 +22,10 @@ def decoding(filename):
     d.decode_raw(wavFile)
     results = d.get_hyp()
 
-    # takes first match
+    # print decoded audiofile
     decode_speech = results[0]
-    print "I said ", decode_speech[0], " with a confidence of ", decode_speech[1]
+    print decode_speech
+
 
 
 # live decoding
