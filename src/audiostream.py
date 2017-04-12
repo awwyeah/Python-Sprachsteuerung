@@ -18,7 +18,36 @@ RECORD_SECS = 5
 
 
 # recording audio
-def record(filename):
+def record_raw(filename):
+
+    # filename
+    WAVE_OUTPUT_FILENAME = filename + ".raw"
+
+    # creating pyaudio object
+    p = pyaudio.PyAudio()
+
+    # input stream
+    stream = p.open(format=FORMAT, channels=CHANNELS, rate=RATE, input=True, frames_per_buffer=CHUNK)
+    print("recording..")
+
+    # temporary buffer
+    frames = []
+    for i in range(0, int(RATE / CHUNK * RECORD_SECS)):
+        data = stream.read(CHUNK)
+        frames.append(data)
+    print("finish recording")
+
+    # stop and close stream
+    stream.stop_stream()
+    stream.close()
+    p.terminate()
+
+    file = open(WAVE_OUTPUT_FILENAME, "w")
+    file.write(b''.join(frames))
+    file.close()
+
+
+def record_wav(filename):
 
     # filename
     WAVE_OUTPUT_FILENAME = filename + ".wav"
@@ -51,8 +80,8 @@ def record(filename):
     wf.close()
 
 
-# play audio file
-def audio_output(filename):
+# play wav file
+def play(filename):
 
     # open file
     wf = wave.open((filename + ".wav"), "rb")
@@ -74,3 +103,4 @@ def audio_output(filename):
     stream.stop_stream()
     stream.close()
     p.terminate()
+

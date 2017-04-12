@@ -3,12 +3,16 @@ import decoding_audio
 import sys
 
 # command line arguments
-if sys.argv[1] == "record":
-    audiostream.record(sys.argv[2])
-elif sys.argv[1] == "output":
-    audiostream.audio_output(sys.argv[2])
+if sys.argv[1] == "record_raw":
+    audiostream.record_raw(sys.argv[2])
+elif sys.argv[1] == "record_wav":
+    audiostream.record_wav(sys.argv[2])
+elif sys.argv[1] == "play":
+    audiostream.play(sys.argv[2])
 elif sys.argv[1] == "decoding":
     decoding_audio.decoding(sys.argv[2])
 elif sys.argv[1] == "live_decoding":
     decoding_audio.live_decoding()
+elif sys.argv[1] == "decoding_test":
+    decoding_audio.decoding_test(sys.argv[2])
 
